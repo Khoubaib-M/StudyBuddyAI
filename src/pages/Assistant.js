@@ -1,6 +1,5 @@
 /*Import of Packages*/
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { Configuration, OpenAIApi } from "openai";
 
 const storageKey = "open-ai-history";
@@ -42,10 +41,10 @@ function Assistant() {
         model: "text-davinci-003",
         prompt:
           userQuestion /*Passing the user input as the question to openai*/,
-        max_tokens: 500,
+        max_tokens: 1000,
       })
       .then((res) => {
-        console.log(res);
+        //console.log(res);
         //setModalOpen(true);
         setUserQuestion("");
         setResponseDivClassName("");
