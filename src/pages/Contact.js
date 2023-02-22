@@ -53,7 +53,7 @@ function Contact() {
 
   return (
     <div className="text-2xl p-4 mx-auto  max-w-2xl ">
-      <div
+      <form
         onSubmit={handleSubmit}
         className="mt-4 block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12"
         style={{
@@ -79,9 +79,13 @@ function Contact() {
           <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
             Submit
           </button>
-          {success && <p>Your Feedback is Sent Successfully!</p>}
+          {success && <p className ='text-sm'>Feedback Sent Successfully!</p>}
         </div>
-      </div>
+      </form>
+
+      
+
+
     </div>
   );
 }
