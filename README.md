@@ -37,6 +37,10 @@ When the user types in a question, for example 'What is the Capital of Austria?'
 ![Alt text](images/examplequestion.png)
 ![Alt text](images/answer.png)
 
+When clicking the 'Calendar' button this is what the user will be met with shown below 
+
+![Alt text](images/Screenshot%202023-02-22%20181604.jpg)
+
 ## Acceptance Criteria
 
 - Use React.
