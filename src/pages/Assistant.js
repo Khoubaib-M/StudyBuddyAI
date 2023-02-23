@@ -1,8 +1,11 @@
 /*Import of Packages*/
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Configuration, OpenAIApi } from "openai";
 
 const storageKey = "open-ai-history";
+
+const openAiFunctionUrl = ".netlify/functions/openai";
 
 function Assistant() {
   /*useState to track user input question*/
@@ -25,35 +28,30 @@ function Assistant() {
     setUserQuestion(event.target.value);
   };
 
-  /*Settings for openai key and fetch request and response*/
-  const apiKey = process.env.REACT_APP_AI_API;
-
   const promptAI = () => {
-    //setResponseDivClassName('hidden');
     setIsBusy(true);
-    const configuration = new Configuration({
-      apiKey,
-    });
-    const openai = new OpenAIApi(configuration);
 
-    openai
-      .createCompletion({
-        model: "text-davinci-003",
-        prompt:
-          userQuestion /*Passing the user input as the question to openai*/,
-        max_tokens: 1000,
-      })
+    fetch(openAiFunctionUrl, {
+      method: "POST",
+      body: JSON.stringify({ userQuestion: userQuestion }),
+      headers: { "content-type": "application/json" },
+    })
+      .then((res) => res.json())
       .then((res) => {
-        //console.log(res);
+        console.log(res);
         //setModalOpen(true);
         setUserQuestion("");
         setResponseDivClassName("");
-        setAiResponse(res.data.choices[0].text);
+        setAiResponse(res.result);
         setIsBusy(false);
-        history.unshift({ q: userQuestion, a: res.data.choices[0].text });  // add to begining of array
+        history.unshift({ q: userQuestion, a: res.result }); // add to begining of array
         const newHistory = history.slice(0, 10);
         setHistory(newHistory);
         localStorage.setItem(storageKey, JSON.stringify(newHistory));
+      })
+      .catch((err) => {
+        alert(err);
+        setIsBusy(false);
       });
   };
 
@@ -86,14 +84,14 @@ function Assistant() {
           backdropFilter: "saturate(200%) blur(25px)",
         }}
       >
-        <div className="">{aiResponse}</div>
+        <div className="overflow-hidden">{aiResponse}</div>
       </div>
 
       <div className="mt-2 text-sm font-sans text-left bg-blue-200 rounded-lg">
         <h2 className="text-2xl mt-4 mb-2 p-2 font-medium">History</h2>
         {history.map((value) => (
           <div className="border-t-2 border-gray-200 p-2 mb-2">
-            <div className="font-bold ">{value.q}</div>
+            <div className="font-bold capitalize">{value.q}</div>
             <div className="">{value.a}</div>
           </div>
         ))}
