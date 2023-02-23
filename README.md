@@ -2,7 +2,7 @@
 
 ## Deployed page 
 
--Link Here-
+https://study-buddy-ai.netlify.app/ 
 
 ## User Story
 
