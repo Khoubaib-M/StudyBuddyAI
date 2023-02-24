@@ -22,7 +22,7 @@ function About() {
         <div className="border-t-2 border-gray-250 p-2 mb-2">
           <h2 className="text-2xl mt-1 mb-1 p-2 font-medium">Contributions & Enquiries</h2>
           <p>For contributions and enquiries, please contact any of the developers of ths app: <br></br>
-          <a className='font-medium text-red-700' href='https://github.com/innonka'>Rothmann Inna</a> <br></br>
+          <a className='font-medium text-red-700' href='https://github.com/innonka'>Inna Rothmann</a> <br></br>
 
           <a className='font-medium text-red-700' href='https://github.com/khoubaib-m'>Khoubaib Majouli</a><br></br>
 
